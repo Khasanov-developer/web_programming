@@ -1,8 +1,12 @@
 {% extends 'mainApp/wrapper.html' %}
 
 {% block content %}
-    <p>Проверка работоспособности!</p>
+    <p>Выше экстендится шаблон.html через "extends {знак процента mainApp/wrapper.html знак процента} ""</p>
+    <p>Это мой homePage.html</p>
+    <p>Далее 3 раза заинклужен some_html.html content</p>
+
     {% include 'mainApp/includes/some_html.html' %}
     {% include 'mainApp/includes/some_html.html' %}
     {% include 'mainApp/includes/some_html.html' %}
+    {% include 'mainApp/wrapper.html' %}
 {% endblock %}
