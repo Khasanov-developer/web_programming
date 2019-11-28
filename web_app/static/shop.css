@@ -45,3 +45,9 @@ html, body {
     background-color: #cc3a10;
     border: none;
 }
+
+.wrapper{
+    background: orange;
+    margin: 5em 5em;
+    overflow: auto;
+}

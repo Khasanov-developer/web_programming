@@ -1,0 +1,99 @@
+{
+	"info": {
+		"_postman_id": "806106d0-1f23-47fe-aa0e-ea3c7935c3a5",
+		"name": "Tests_postman",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Body-headers_tests",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5f9fe7c0-d3a2-4d3f-a6fe-702bbbdab653",
+						"exec": [
+							"// pm.test(\"Status code is 200\", function(){",
+							"//     pm.response.to.have.status(200);",
+							"// });",
+							"",
+							"pm.test(\"Response time is less than 2000ms\", function(){",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);",
+							"});",
+							"",
+							"pm.test(\"Body mathes string 'Погода'\", function(){",
+							"   pm.expect(pm.response.text()).to.include(\"Погода\"); ",
+							"});",
+							"",
+							"pm.test(\"Date header is present\", function(){",
+							"    pm.response.to.have.header(\"Date\");",
+							"})",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "yandex.ru",
+					"host": [
+						"yandex",
+						"ru"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "JSON data value testing",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "eb10c15e-f29b-4f1c-806b-d41798e95cd4",
+						"exec": [
+							"pm.test(\"Check JSON page value is equal to 1\", function(){",
+							"   var jsonData = pm.response.json();",
+							"   pm.expect(jsonData.page).to.equal(1);",
+							"});",
+							"",
+							"pm.test(\"Check JSON first_name in data id = 1 is equal to George\", function(){",
+							"   var jsonData = pm.response.json();",
+							"   pm.expect(jsonData.data[0].first_name).to.equal(\"George\"); ",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://reqres.in/api/users?page=1",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
