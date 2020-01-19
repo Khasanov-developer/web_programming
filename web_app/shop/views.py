@@ -1,19 +1,21 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponse
 from datetime import datetime
 from .forms import SubscriberForm
-
+from products.models import *
 
 # Create your views here.
 def index(request):
-    name = 'Radmir!'
-    current_day = datetime.today()
+
     form = SubscriberForm(request.POST or None)
     if request.method == 'POST' and form.is_valid():
-        print(request.POST)
-        print(form.cleaned_data)
         data = form.cleaned_data
-        print(data['name'])
-
+        name = data['name']
+        email = data['email']
         form.save()
+        # return render(request, 'shop/request.html', locals())
 
-    return render(request, 'mainPage.html', locals())
+    return render(request, 'shop/mainPage.html', locals())
+
+def home(request):
+    products_images = ProductImage.objects.filter(is_active=True, is_main=True)
+    return render(request, 'shop/home.html', locals())
